@@ -10,6 +10,10 @@
         <link rel="stylesheet" href="./css/xadmin.css">
         <script src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
+        <script type="text/javascript"></script>
+        <script type="text/jscript" src="js/jquery.min.js">
+        	
+        </script>
         <!--[if lt IE 9]>
           <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
           <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -56,25 +60,12 @@
                                   <th>电话</th>
                                   <th>性别</th>
                                   <th>操作</th>
+                                 </tr>
                               </thead>
-                              
-                                <tr>
-                                  <td>
-                                    <input type="checkbox" name=""  lay-skin="primary">
-                                  </td>
-                                  <td>1</td>
-                                  <td>admin</td>
-                                  <td>18925139194</td>
-                                  <td>113664000@qq.com</td>
-                                  <td class="td-manage">
-                                    <a title="编辑"  onclick="xadmin.open('编辑','admin-edit.html')" href="javascript:;">
-                                      <i class="layui-icon">&#xe642;</i>
-                                    </a>
-                                    <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                      <i class="layui-icon">&#xe640;</i>
-                                    </a>
-                                  </td>
-                                </tr>
+                                  
+                                <tbody id="tab">
+
+								</tbody>
                               
                             </table>
                         </div>
@@ -99,6 +90,51 @@
           elem: '#end' //指定元素
         });
       });
+      
+      $(function(){
+			$.ajax({
+		//请求方式
+		type: "GET",
+		//请求头
+		dataType: "json",
+		//请求地址
+		url: "http://localhost:8080/Maven_Project/user/query.action",
+		//数据，json字符串
+		//请求成功
+		success: function(data) {
+			let recent = data;	
+			console.log(recent)
+			for(let i = 0; i < recent.length; i++) {
+				shuzhi((i + 1), recent[i].u_id, recent[i].u_name, recent[i].u_tel, recent[i].u_Sex )
+				}
+			},
+			//请求失败，包含具体的错误信息
+			error: function(e) {
+
+			}
+		});
+　
+});
+
+//'<td>' + new Date(r.createTime).Format("yyyy-MM-dd hh:mm:ss") + '</td><td><a href="javascript:remove(' + r.id + ')" style="color: #CA0C16;">删除' +
+                               // '</a>&nbsp;&nbsp;<a href="javascript:edit(' + r.id + ')">编辑</a></td></tr>'
+
+			
+				function shuzhi(num, u_id, u_name, u_tel, u_Sex) {
+
+					var data = "<tr>\n" +
+						"<td>" + u_id+ '</td>' +
+						"<td>" + u_name +"</td>" +
+						"<td>" + u_tel +"</td>" +
+						"<td>" + u_Sex +"</td>" +
+						"<td>" + "<a href='javascript:edit("+u_id+")' >修改</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+						 "<a href='javascript:remove("+u_id+")' style='color: #CA0C16;' >删除</a>" +"</td>" +
+						"\n</tr>"
+				
+					$("#tab").append(data);
+
+				}
+
 
        
 
