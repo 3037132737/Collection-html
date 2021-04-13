@@ -135,6 +135,27 @@
 					$("#tab").append(data);
 
 				}
+				
+				//删除
+	function remove(u_id){
+		
+		if(confirm("确定删除数据吗？")){
+			
+			$.ajax({
+				type:"get",
+				url:"http://localhost:8080/Maven_Project/user/delete.action",
+				async:true,
+				data:{
+					"u_id":u_id
+				},
+				success: function(data){
+					location.reload();
+					getPage(1);
+				},
+
+			});
+		}
+	}
 
 
        
