@@ -21,6 +21,11 @@
         	})
         	
         </script>
+        
+        <style type="text/css">
+        	#fu{position: relative;}
+        	#zi{position: absolute;left: 200px;top: 10px;}
+        </style>
     </head>
     <body>
         <div class="x-nav">
@@ -34,18 +39,21 @@
         <div class="layui-fluid">
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
-                    <div class="layui-card">
+                    <div id="fu" class="layui-card">
                         <div class="layui-card-body ">
                             <form class="layui-form layui-col-space5">
                                 
                                 <div class="layui-inline layui-show-xs-block">
                                     <input type="text" name="m_name" id="m_name" placeholder="请输入会员姓名" autocomplete="off" class="layui-input">
                                 </div>
-                                <div class="layui-inline layui-show-xs-block">
-                                    <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="chaxun"><i class="layui-icon">&#xe615;</i></button>
-                                </div>
+                                
                             </form>
+                                
                         </div>
+                        <div id="zi" class="layui-inline layui-show-xs-block">
+                                <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="chaxun"><i class="layui-icon">&#xe615;</i></button>
+                         </div>
+                        
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
                             <button class="layui-btn" onclick="xadmin.open('添加用户','./member-add.html',600,400)"><i class="layui-icon"></i>添加</button>
@@ -106,6 +114,7 @@
 			
 			
 			$("#chaxun").click(function(){
+				document.getElementById("tab").innerHTML = "";
 				$.ajax({
 				type:"POST",
 				url:"http://localhost:8089/Maven_Project/member/queryByName.action",
