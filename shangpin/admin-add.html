@@ -23,11 +23,11 @@
             <div class="layui-row">
                 <form class="layui-form">
                   <div class="layui-form-item">
-                      <label for="u_id" class="layui-form-label">
+                      <label for="uId" class="layui-form-label">
                           <span class="x-red">*</span>序号
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="u_id" name="u_id" required="" lay-verify="required"
+                          <input type="text" id="uId" name="uId" required="" lay-verify="required"
                           autocomplete="off" class="layui-input">
                       </div>
                       <div class="layui-form-mid layui-word-aux">
@@ -35,11 +35,11 @@
                       </div>
                   </div>
                   <div class="layui-form-item">
-                      <label for="u_name" class="layui-form-label">
+                      <label for="uName" class="layui-form-label">
                           <span class="x-red">*</span>姓名
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="u_name" name="u_name" required="" lay-verify="phone"
+                          <input type="text" id="uName" name="uName" required="" lay-verify="phone"
                           autocomplete="off" class="layui-input">
                       </div>
                       <div class="layui-form-mid layui-word-aux">
@@ -47,11 +47,11 @@
                       </div>
                   </div>
                   <div class="layui-form-item">
-                      <label for="u_tel" class="layui-form-label">
+                      <label for="uTel" class="layui-form-label">
                           <span class="x-red">*</span>电话
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="u_tel" name="u_tel" required="" 
+                          <input type="text" id="uTel" name="uTel" required="" 
                           autocomplete="off" class="layui-input">
                       </div>
                       <div class="layui-form-mid layui-word-aux">
@@ -59,11 +59,11 @@
                       </div>
                   </div>
                   <div class="layui-form-item">
-                      <label for="u_sex" class="layui-form-label">
+                      <label for="uSex" class="layui-form-label">
                           <span class="x-red">*</span>性别
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="u_sex" name="u_sex" required="" 
+                          <input type="text" id="uSex" name="uSex" required="" 
                           autocomplete="off" class="layui-input">
                       </div>
                       <div class="layui-form-mid layui-word-aux">
@@ -91,10 +91,10 @@
 				type:"get",
 				url:"http://localhost:8080/Maven_Project/user/add.action",
 				data:{
-					"u_id":$("#u_id").val(),
-					"u_name":$("#u_name").val(),
-					"u_tel":$("#u_tel").val(),
-					"u_sex":$("#u_sex").val()
+					"uId":$("#uId").val(),
+					"uName":$("#uName").val(),
+					"uTel":$("#uTel").val(),
+					"uSex":$("#uSex").val()
 				},
 				success:function(data){
 					alert("成功");
