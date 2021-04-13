@@ -145,12 +145,44 @@
 						"<td>" + m_tel +"</td>" +
 						"<td>" + g_name +"</td>" +
 						"<td>" + "<a href='javascript:edit("+m_id+")' >修改</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-						 "<a href='javascript:remove("+m_id+")' style='color: #CA0C16;' >删除</a>" +"</td>" +
+						"<a  href=\"javascript:remove('"+m_id+"')\"  >删除<\a>" +
 						"\n</tr>"
 				
 					$("#tab").append(data);
 
 				}
+		
+		
+		function remove(m_id){
+		//alert("remove");
+		
+			
+			$.ajax({
+				type:"get",
+				url:"http://localhost:8089/Maven_Project/member/delete.action",
+				async:true,
+				data:{
+					"m_id":m_id
+				},
+				success: function(data){
+					
+					
+					location.reload();
+					getPage(1);
+				},
+				error: function() {
+					//alert("删除失败")
+					location.reload();
+				}
+					
+					
+				
+
+			});
+		
+	}
+		
+		
     	
     	
       layui.use(['laydate','form'], function(){
