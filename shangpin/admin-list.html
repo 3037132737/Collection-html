@@ -91,6 +91,13 @@
         });
       });
       
+      function editpage(uId){
+				var idValue = uId;
+				window.sessionStorage.setItem("uId", idValue);
+				// 转跳至修改界面
+				window.location.href="admin-edit.html"
+			}
+      
       $(function(){
 			$.ajax({
 		//请求方式
@@ -128,7 +135,7 @@
 						"<td>" + uName +"</td>" +
 						"<td>" + uTel +"</td>" +
 						"<td>" + uSex +"</td>" +
-						"<td>" + "<a href='javascript:edit("+uId+")' >修改</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+						"<td>" + "<a  href=\"javascript:editpage('"+uId+"')\"  >删除<\a>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 						// "<a href=\"javascript:remove(' "+uId+" ')\" style='color: #CA0C16;" >删除</a>" +"</td>" +
 						"<a  href=\"javascript:remove('"+uId+"')\"  >删除<\a>" +
 						"\n</tr>"
