@@ -11,6 +11,12 @@
         <link rel="stylesheet" href="./css/xadmin.css">
         <script src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        
+                <style type="text/css">
+        	#fu{position: relative;}
+        	#zi{position: absolute;left: 200px;top: 10px;}
+        </style>
     </head>
     
     <body>
@@ -26,26 +32,22 @@
         <div class="layui-fluid">
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
-                    <div class="layui-card">
-                        <div class="layui-card-body ">
+                    <div id="fu" class="layui-card">
+                        <div  class="layui-card-body ">
                             <form class="layui-form layui-col-space5">
                                 
-                                <div class="layui-input-inline layui-show-xs-block">
-                                    <select name="contrller">
-                                        <option>支付方式</option>
-                                        <option>支付宝</option>
-                                        <option>微信</option>
-                                        <option>现金</option></select>
-                                </div>
+
                                 
                                 <div class="layui-input-inline layui-show-xs-block">
-                                    <input type="text" name="username" placeholder="请输入账单号" autocomplete="off" class="layui-input"></div>
-                                <div class="layui-input-inline layui-show-xs-block">
-                                    <button class="layui-btn" lay-submit="" lay-filter="sreach">
+                                    <input type="text" name="uName" id="uName" placeholder="请输入员工姓名" autocomplete="off" class="layui-input"></div>
+                                
+                            </form>
+                            
+                        </div>
+                        <div  id="zi" layui-input-inline layui-show-xs-block"">
+                                    <button class="layui-btn" lay-submit="" lay-filter="sreach" id="chaxun">
                                         <i class="layui-icon">&#xe615;</i></button>
                                 </div>
-                            </form>
-                        </div>
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()">
                                 <i class="layui-icon"></i>批量删除</button>
@@ -59,58 +61,17 @@
                                             <input type="checkbox" name="" lay-skin="primary">
                                         </th>
                                         <th>账单编号</th>
+                                        <th>员工姓名</th>
                                         <th>总金额</th>
                                         <th>支付方式</th>
                                         <th>下单时间</th>
                                         <th>备注</th>
                                         <th>操作</th></tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" name="" lay-skin="primary"></td>
-                                        <td>2017009171822298053</td>
-                                        <td>7829.10</td>
-                                        <td>微信支付</td>
-                                        <td>2017-08-17 18:22</td>
-                                        <td></td>
-                                        <td class="td-manage">
-                                            <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
-                                                <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                                <i class="layui-icon">&#xe640;</i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" name="" lay-skin="primary"></td>
-                                        <td>2017009171822298053</td>
-                                        <td>7854.10</td>
-                                        <td>支付宝支付</td>
-                                        <td>2017-08-17 18:22</td>
-                                        <td></td>
-                                        <td class="td-manage">
-                                            <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
-                                                <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                                <i class="layui-icon">&#xe640;</i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" name="" lay-skin="primary"></td>
-                                        <td>2017009171822298053</td>
-                                        <td>7854.10</td>
-                                        <td>现金</td>
-                                        <td>2017-08-17 18:22</td>
-                                        <td></td>
-                                        <td class="td-manage">
-                                            <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
-                                                <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                                <i class="layui-icon">&#xe640;</i></a>
-                                        </td>
-                                    </tr>
+                                <tbody id="tab">
+                                    
+                                    
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -134,6 +95,85 @@
                 elem: '#end' //指定元素
             });
         });
+        
+        $(function(){
+    		
+			$.ajax({
+			//请求方式
+			type: "GET",
+			//请求头
+			dataType: "json",
+			//请求地址
+			url: "http://localhost:8080/Maven_Project/record/query.action",
+			//数据，json字符串
+			//请求成功
+			success: function(data) {
+				let recent = data;	
+				console.log(recent)
+				for(let i = 0; i < recent.length; i++) {
+					shuzhi((i + 1), recent[i].cr_id,recent[i].uName, recent[i].cr_money, recent[i].w_name, recent[i].cr_time,recent[i].cr_remark )
+					}
+				},
+				//请求失败，包含具体的错误信息
+				error: function(e) {
+					
+				}
+			});
+			});
+			
+			
+			$("#chaxun").click(function(){
+				document.getElementById("tab").innerHTML = "";
+				$.ajax({
+				type:"POST",
+				url:"http://localhost:8080/Maven_Project/record/queryByName.action",
+				data:{
+					"uName":$("#uName").val()
+				},
+				success:function(data){
+				let recent = data;	
+				console.log(recent)
+				for(let i = 0; i < recent.length; i++) {
+					shuzhi((i + 1), recent[i].cr_id, recent[i].uName, recent[i].cr_money, recent[i].w_name, recent[i].cr_time,recent[i].cr_remark )
+					}
+				},
+				//请求失败，包含具体的错误信息
+				error: function(e) {
+					alert("没有该用户")
+				}
+			});
+			})
+        
+        
+        
+        function shuzhi(num, cr_id, cr_money, w_name, cr_time,cr_remark) {
+
+					var data = "<tr>\n" +
+					"<td>" + '<input type="checkbox" name=""  lay-skin="primary">' + "</td>" +
+						"<td>" + cr_id+ '</td>' +
+						"<td>" + uName+ '</td>' +
+						"<td>" + cr_money +"</td>" +
+						"<td>" + w_name +"</td>" +
+						"<td>" + cr_time +"</td>" +
+						"<td>" + cr_remark +"</td>" +
+						"<td>" + "<a href='javascript:edit("+cr_id+")' >修改</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+						"<a  href=\"javascript:remove('"+cr_id+"')\"  >删除<\a>" +
+						"\n</tr>"
+				
+					$("#tab").append(data);
+
+				}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
         /*用户-停用*/
         function member_stop(obj, id) {
