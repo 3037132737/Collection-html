@@ -68,7 +68,6 @@
             });
         
 			$("#tianjia").click(function(){
-				alert("1")
 				$.ajax({
 				type:"POST",
 				url:"http://localhost:8089/Maven_Project/member/add.action",
@@ -80,6 +79,7 @@
 				},
 				success:function(data){
 					alert("成功");
+					//location.reload();
 				},
 				async:true
 			});
