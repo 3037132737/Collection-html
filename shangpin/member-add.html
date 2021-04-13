@@ -55,7 +55,7 @@
                     
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
-                        <button class="layui-btn"  type="button" id="tianjia" onclick="tianjia()">添加</button></div>
+                        <button class="layui-btn"   id="tianjia" <!--onclick="tianjia()"-->>添加</button></div>
                 </form>
             </div>
         </div>
@@ -67,26 +67,23 @@
 
             });
         
-           	function tianjia(){
-           		alert("1")
-           	}
-//			function tianjia(){
-//				
-//				$.ajax({
-//				type:"POST",
-//				url:"http://localhost:8089/Maven_Project/member/add.action",
-//				data:{
-//					"m_name":$("#m_name").val(),
-//					"m_sex":$("#m_sex").val(),
-//					"m_tel":$("#m_tel").val(),
-//					"g_id":$("#g_id").val()
-//				},
-//				success:function(data){
-//					alert("成功");
-//				},
-//				async:true
-//			});
-//			}
+			$("#tianjia").click(function(){
+				alert("1")
+				$.ajax({
+				type:"POST",
+				url:"http://localhost:8089/Maven_Project/member/add.action",
+				data:{
+					"m_name":$("#m_name").val(),
+					"m_sex":$("#m_sex").val(),
+					"m_tel":$("#m_tel").val(),
+					"g_id":$("#g_id").val()
+				},
+				success:function(data){
+					alert("成功");
+				},
+				async:true
+			});
+			})
        
        </script>
             
