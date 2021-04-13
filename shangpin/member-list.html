@@ -144,13 +144,21 @@
 						"<td>" + m_sex +"</td>" +
 						"<td>" + m_tel +"</td>" +
 						"<td>" + g_name +"</td>" +
-						"<td>" + "<a href='javascript:edit("+m_id+")' >修改</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+						"<td>" + "<a  href=\"javascript:update('"+m_id+"')\"  >修改<\a>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 						"<a  href=\"javascript:remove('"+m_id+"')\"  >删除<\a>" +
+//						<a title=\编辑  onclick=xadmin.open(编辑,member-edit.html,600,400)  href=javascript:remove(+m_id+)\;>编辑</a>
 						"\n</tr>"
 				
 					$("#tab").append(data);
 
 				}
+		
+		function update(id){
+				var idValue = id;
+				window.sessionStorage.setItem("id", idValue);
+				// 转跳至修改界面
+				window.location.href="member-edit.html"
+			}
 		
 		
 		function remove(m_id){

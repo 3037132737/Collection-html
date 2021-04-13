@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="./css/xadmin.css">
         <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js" ></script>
         <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
         <!--[if lt IE 9]>
             <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -19,35 +20,48 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form">
-                    <div class="layui-form-item">
-                        <label for="L_email" class="layui-form-label">
-                            <span class="x-red">*</span>邮箱</label>
+               <form class="layui-form">
+                	<div class="layui-form-item">
+                        <label for="L_username" class="layui-form-label">
+                            <span class="x-red">*</span>姓名</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="L_email" name="email" required="" lay-verify="email" autocomplete="off" class="layui-input"></div>
-                        <div class="layui-form-mid layui-word-aux">
-                            <span class="x-red">*</span>将会成为您唯一的登入名</div></div>
+                        	 <input type="text" style="display:none" id="m_id" name="m_id" >
+                            <input type="text" id="m_name" name="m_name" required="" lay-verify="nikename" autocomplete="off" class="layui-input"></div>
+                    </div>
                     <div class="layui-form-item">
                         <label for="L_username" class="layui-form-label">
-                            <span class="x-red">*</span>昵称</label>
+                            <span class="x-red">*</span>性别</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="L_username" name="username" required="" lay-verify="nikename" autocomplete="off" class="layui-input"></div>
+                            <input type="text" id="m_sex" name="m_sex" required="" lay-verify="nikename" autocomplete="off" class="layui-input"></div>
                     </div>
                     <div class="layui-form-item">
-                        <label for="L_pass" class="layui-form-label">
-                            <span class="x-red">*</span>密码</label>
+                        <label for="L_username" class="layui-form-label">
+                            <span class="x-red">*</span>手机号</label>
                         <div class="layui-input-inline">
-                            <input type="password" id="L_pass" name="pass" required="" lay-verify="pass" autocomplete="off" class="layui-input"></div>
-                        <div class="layui-form-mid layui-word-aux">6到16个字符</div></div>
-                    <div class="layui-form-item">
-                        <label for="L_repass" class="layui-form-label">
-                            <span class="x-red">*</span>确认密码</label>
-                        <div class="layui-input-inline">
-                            <input type="password" id="L_repass" name="repass" required="" lay-verify="repass" autocomplete="off" class="layui-input"></div>
+                            <input type="text" id="m_tel" name="m_tel" required="" lay-verify="nikename" autocomplete="off" class="layui-input"></div>
                     </div>
+                     <div class="layui-form-item">
+                        <label for="L_username" class="layui-form-label">
+                            <span class="x-red">*</span>当前会员级别</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="g_idd" name="g_idd" required="" lay-verify="nikename" autocomplete="off" class="layui-input"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="L_username" class="layui-form-label">
+                            <span class="x-red">*</span>修改会员级别</label>
+                        <div class="layui-input-inline">
+							    <select name="g_id" id="g_id" lay-verify="required" value="">
+								<option value="g004">vip</option>
+								<option value="g003">黄金vip</option>
+								<option value="g002">白金vip</option>
+								<option value="g001">钻石vip</option>
+							</select>
+                        </div>
+                    </div>
+                    
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
-                        <button class="layui-btn" lay-filter="add" lay-submit="">增加</button></div>
+                        <button class="layui-btn"   id="tianjia" onclick="edit()">修改</button></div>
                 </form>
             </div>
         </div>
@@ -56,46 +70,76 @@
                 $ = layui.jquery;
                 var form = layui.form,
                 layer = layui.layer;
-
-                //自定义验证规则
-                form.verify({
-                    nikename: function(value) {
-                        if (value.length < 5) {
-                            return '昵称至少得5个字符啊';
-                        }
-                    },
-                    pass: [/(.+){6,12}$/, '密码必须6到12位'],
-                    repass: function(value) {
-                        if ($('#L_pass').val() != $('#L_repass').val()) {
-                            return '两次密码不一致';
-                        }
-                    }
-                });
-
-                //监听提交
-                form.on('submit(add)',
-                function(data) {
-                    console.log(data);
-                    //发异步，把数据提交给php
-                    layer.alert("增加成功", {
-                        icon: 6
-                    },
-                    function() {
-                        // 获得frame索引
-                        var index = parent.layer.getFrameIndex(window.name);
-                        //关闭当前frame
-                        parent.layer.close(index);
-                    });
-                    return false;
-                });
-
-            });</script>
-        <script>var _hmt = _hmt || []; (function() {
-                var hm = document.createElement("script");
-                hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(hm, s);
-            })();</script>
+            });
+            
+            $(document).ready(function(){
+				var m_id=sessionStorage.getItem('id');
+				//alert(id)
+				
+				$.ajax({
+					url:"http://localhost:8089/Maven_Project/member/queryById.action?m_id="+m_id,
+					data: {},
+					type: "get",
+					dataType: "json",
+					success: function(data) {
+						//alert(data.GOODS_NAME)
+						addValue(
+							data.m_id,
+							data.m_name,
+							data.m_sex,
+							data.m_tel,
+							data.g_name,
+						)
+					//alert("获取数据成功")
+				},
+				error: function() {
+					alert("获取数据失败")
+				}
+					
+				});
+				function addValue(con1,con2,con3,con4,con5){
+					$("#m_id").attr("value",con1);
+					$("#m_name").attr("value",con2);
+					$("#m_sex").attr("value",con3);
+					$("#m_tel").attr("value",con4);
+					$("#g_idd").attr("value",con5);
+			}
+			});
+			
+			function edit(){
+		 	alert("edit()");
+		 	var m_id=$('#m_id').val();
+		 	var m_name=$('#m_name').val();
+		 	var m_sex=$('#m_sex').val();
+		 	var m_tel=$('#m_tel').val();
+		 	var g_id=$('#g_id').val();
+		 	$.ajax({
+		 		type:"post",
+		 		url:"http://localhost:8089/Maven_Project/member/update.action",
+		 		type: "POST",//方法类型
+	            dataType: "json",//预期服务器返回的数据类型
+		 		jsonp:"callback",
+		 		data:{
+		 			m_id:m_id,
+		 			m_name:m_name,
+		 			m_sex:m_sex,
+		 			m_tel:m_tel,
+		 			g_id:g_id,
+		 		},
+		 		success: function(data){
+		 			
+					window.location.href = "member-list.html";
+		 		},
+		 		error : function() 
+	                {
+	                    alert("修改异常！");
+	                }
+		 		
+		 	});
+		 }
+        
+        </script>
+       
     </body>
 
 </html>
