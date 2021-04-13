@@ -105,7 +105,7 @@
 			let recent = data;	
 			console.log(recent)
 			for(let i = 0; i < recent.length; i++) {
-				shuzhi((i + 1), recent[i].u_id, recent[i].u_name, recent[i].u_tel, recent[i].u_Sex )
+				shuzhi((i + 1), recent[i].uId, recent[i].uName, recent[i].uTel, recent[i].uSex )
 				}
 			},
 			//请求失败，包含具体的错误信息
@@ -120,25 +120,30 @@
                                // '</a>&nbsp;&nbsp;<a href="javascript:edit(' + r.id + ')">编辑</a></td></tr>'
 
 			
-				function shuzhi(num, u_id, u_name, u_tel, u_Sex) {
+				function shuzhi(num, uId, uName, uTel, uSex) {
 
 					var data = "<tr>\n" +
 						"<td>" + '<input type="checkbox" name=""  lay-skin="primary">' + "</td>" +
-						"<td>" + u_id+ '</td>' +
-						"<td>" + u_name +"</td>" +
-						"<td>" + u_tel +"</td>" +
-						"<td>" + u_Sex +"</td>" +
-						"<td>" + "<a href='javascript:edit("+u_id+")' >修改</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-						 "<a href='javascript:remove("+u_id+")' style='color: #CA0C16;' >删除</a>" +"</td>" +
+						"<td>" + uId+ '</td>' +
+						"<td>" + uName +"</td>" +
+						"<td>" + uTel +"</td>" +
+						"<td>" + uSex +"</td>" +
+						"<td>" + "<a href='javascript:edit("+uId+")' >修改</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+						// "<a href=\"javascript:remove(' "+uId+" ')\" style='color: #CA0C16;" >删除</a>" +"</td>" +
+						"<a  href=\"javascript:remove('"+uId+"')\"  >删除<\a>" +
 						"\n</tr>"
 				
 					$("#tab").append(data);
 
 				}
+					function cvoid(  ){
+					alert("成功");
+					
+				}
 				
 				//删除
-	function remove(u_id){
-		
+	function remove(uId){
+		alert("shanchu")
 		if(confirm("确定删除数据吗？")){
 			
 			$.ajax({
@@ -146,7 +151,7 @@
 				url:"http://localhost:8080/Maven_Project/user/delete.action",
 				async:true,
 				data:{
-					"u_id":u_id
+					"uId":uId
 				},
 				success: function(data){
 					location.reload();
