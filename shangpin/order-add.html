@@ -23,38 +23,51 @@
                 <form class="layui-form">
                     <div class="layui-form-item">
                         <label for="username" class="layui-form-label">
-                            <span class="x-red">*</span>用户名</label>
+                            <span class="x-red">*</span>账单编号</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="username" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                            <input type="text" id="cr_id" name="cr_id" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
                     </div>
                     <div class="layui-form-item">
                         <label for="username" class="layui-form-label">
+                            <span class="x-red">*</span>员工姓名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="uName" name="uName" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                    </div>
+                     <div class="layui-form-item">
+                        <label for="username" class="layui-form-label">
                             <span class="x-red">*</span>总金额</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="username" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                            <input type="text" id="cr_money" name="cr_money" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                    </div>
+                     <div class="layui-form-item">
+                        <label for="username" class="layui-form-label">
+                            <span class="x-red">*</span>下单时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="cr_time" name="cr_time" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
                     </div>
                    
+
                     <div class="layui-form-item">
                         <label for="username" class="layui-form-label">
                             <span class="x-red">*</span>支付方式</label>
                         <div class="layui-input-inline">
-                            <select name="contrller">
-                                <option>支付方式</option>
-                                <option>支付宝</option>
-                                <option>微信</option>
-                                <option>现金</option></select>
+							        <select name="w_id" id="w_id" lay-verify="required">
+								<option value="w001">微信支付</option>
+								<option value="w002">支付宝支付</option>
+								<option value="w003">现金支付</option>
+							</select>
                         </div>
                     </div>
                   
         <div class="layui-form-item layui-form-text">
             <label for="desc" class="layui-form-label">备注</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" id="desc" name="desc" class="layui-textarea"></textarea>
+                <textarea placeholder="请输入内容" id="cr_remark" name="cr_remark" class="layui-textarea"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label"></label>
-            <button class="layui-btn" lay-filter="add" lay-submit="">增加</button></div>
+            <button class="layui-btn" lay-filter="add" lay-submit="" id="tianjia">增加</button></div>
         </form>
         </div>
         </div>
@@ -78,6 +91,37 @@
                         }
                     }
                 });
+                
+                
+                
+                
+               $("#tianjia").click(function(){
+				$.ajax({
+				type:"POST",
+				url:"http://localhost:8080/Maven_Project/record/add.action",
+				data:{
+					"cr_id":$("#cr_id").val(),
+					"uName":$("#uName").val(),
+					"cr_money":$("#cr_money").val(),
+					"cr_time":$("#cr_time").val(),
+					"w_id":$("#w_id").val(),
+					"cr_remark":$("#cr_remark").val(),
+				},
+				success:function(data){
+					alert("成功");
+					//location.reload();
+					window.location.href = "order-list.html";
+				},
+//				error : function(e){
+//	                    alert("添加异常！");
+//	                    window.location.href = "member-list.html";
+//	                }
+				async:true
+			});
+			})
+       
+      
+            
 
                 //监听提交
                 form.on('submit(add)',
