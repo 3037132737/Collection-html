@@ -19,6 +19,7 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
         <script src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
 		
 		<style type="text/css">
 			
@@ -67,8 +68,10 @@
                                 		
                                 	}
                                 	setInterval("showTime()",1000);
-                                </script>
-                                <input type="text" id="clock" style="border: none;" />
+                                	
+
+        </script>
+                              <input type="text" id="clock" style="border: none;" />
                             </blockquote>
                         </div>
                     </div>
@@ -79,7 +82,7 @@
                         	<ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
                         	<li class="layui-col-md2 layui-col-xs6">头像</li>
                         
-                        <button type="button" class="btn btn-info">添加管理员</button>
+                       <a href="zhuce.html"><button type="button" class="btn btn-info">添加管理员</button></a> 
                         
                         </div>
                         <div class="layui-card-body ">
@@ -90,49 +93,23 @@
                                 
                                 <li class="layui-col-md10 layui-col-xs10">
                                 		<table class="table">
+                                			<thead>
                                 			<tr class="warning">
                                 				<td>姓名</td>
                                 				<td>性别</td>
                                 				<td>年龄</td>
                                 				<td>备注</td>
-                                				
                                 			</tr>
+                                			</thead>
                                 			
-                                			<tr>
-                                				<td>2222222</td>
-                                				<td>2222222</td>
-                                				<td>2222222</td>
-                                				<td>2222222</td>
-                                				
-                                				
-                                			</tr>
-                                			<tr>
-                                				<td>2222222</td>
-                                				<td>2222222</td>
-                                				<td>2222222</td>
-                                				<td>2222222</td>
-                                				
-                                			</tr>
-                                			<tr>
-                                				<td>2222222</td>
-                                				<td>2222222</td>
-                                				<td>2222222</td>
-                                				<td>2222222</td>
-                                				
-                                			</tr>
-                                			<tr>
-                                				<td>2222222</td>
-                                				<td>2222222</td>
-                                				<td>2222222</td>
-                                				<td>2222222</td>
-                                				
-                                			</tr>
+                                			<tbody id="tab">
+
+											</tbody>
+
                                 			</table>
                                 	
                                 </li>
 
-
-                                
                             </ul>
                         </div>
                     </div>
@@ -144,5 +121,49 @@
             </div>
         </div>
         </div>
+        <script>
+      $(function(){
+			$.ajax({
+		//请求方式
+		type: "GET",
+		//请求头
+		dataType: "json",
+		//请求地址
+		url: "http://localhost:8080/Maven_Project/root/query.action",
+		//数据，json字符串
+		//请求成功
+		success: function(data) {
+			let recent = data;	
+			console.log(recent)
+			for(let i = 0; i < recent.length; i++) {
+				shuzhi((i + 1), recent[i].r_name, recent[i].r_sex, recent[i].r_age, recent[i].r_remark)
+				}
+			},
+			//请求失败，包含具体的错误信息
+			error: function(e) {
+
+			}
+		});
+		
+		}); 	
+		
+		
+		function shuzhi(num, r_name, r_sex, r_age, r_remark) {
+
+					var data = "<tr>\n" +
+						"<td>" + r_name+ '</td>' +
+						"<td>" + r_sex +"</td>" +
+						"<td>" + r_age +"</td>" +
+						"<td>" + r_remark +"</td>" +
+						"\n</tr>"
+				
+					$("#tab").append(data);
+
+				}
+		function cvoid(  ){
+					alert("成功");
+					
+				}
+			</script>
     </body>
 </html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <!--    引入必要的配置文件 -->
+    <script src="jquery/jquery.min.js"></script>
+    <script src="layui-v2.5.7/layui/layui.js"></script>
+    <link rel="stylesheet" href="layui-v2.5.7/layui/css/layui.css">
+    <!--    自己写的样式-->
+    <link rel="stylesheet" href="css/register.css">
+    <!--    js文件 记得得-->
+</head>
+<body>
+<header>
+    <ul class="layui-nav layui-bg-green" lay-filter="">
+        <li class="layui-nav-item">
+            <img id="logo" src="img/logo.png" alt="">
+        </li>
+        <li class="layui-nav-item register">
+            <a href="">帮助</a>
+        </li>
+        <li class="layui-nav-item register">
+            <a href="">联系我们</a>
+        </li>
+        <li class="layui-nav-item register">
+            <a href="">关于我们</a>
+        </li>
+        <li class="layui-nav-item register">
+            <a href="">登录</a>
+        </li>
+    </ul>
+</header>
+
+
+<main>
+    <div class="layui-fluid">
+        <div class="layui-row">
+            <div class="layui-col-md3">
+                <div class="text">
+                    你的人生永远不会辜负你的，那些转错的弯，那些走错的路，那些流下的泪水，那些留下的伤痕，全都会让你成为独一无二的自己。
+                </div>
+            </div>
+            <div class="layui-col-md6" id="main">
+
+                <div class="m-head">
+                    注册
+                </div>
+                <div class="m-main">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户名 ：</label>
+                            <div class="layui-input-block">
+                                <input type="name" id="name" name="title" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">密码 ：</label>
+                            <div class="layui-input-block">
+                                <input type="password" id="password" name="title" required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">头像 ：</label>
+                            <div class="layui-input-block">
+                                <button type="button" class="layui-btn" id="test1">上传头像</button>
+                                <div class="layui-upload-list">
+                                    <img class="layui-upload-img" id="demo1">
+                                    <p id="demoText"></p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn"  id="res">注册</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重新输入</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="layui-col-md3">
+
+
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+<script>
+
+    layui.use('upload', function() {
+        var $ = layui.jquery, upload = layui.upload;
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            , url: 'http://localhost:8080/sshlx/update' //改成您自己的上传接口
+            , auto: false
+            , field:"upload"
+            ,header :{
+                "Content-Type":"multipart/form-data"
+            }
+           , data :{
+                "uname" : function(){
+                    return $('#name').val();
+                },
+                "password" : function(){
+                    return $('#password').val();
+                }
+            }
+            , accept : "images"
+            , size : "300"
+            ,bindAction : "#res"
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+
+                // layer.load();
+
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code < 0) {
+                    console.log(res);
+                    return layer.msg('上传失败');
+                }
+                console.log(res)
+                // window.location.href="aaa.html";
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+/*                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    // uploadInst.upload();
+                });*/
+            }
+        });
+    })
+</script>
+</body>
+</html>
