@@ -99,20 +99,16 @@
         
         function exportExcel(){
         	alert("开始")
-        	var cr_id = document.getElementById("cr_id").innerText;
-        	alert(cr_id)
         	$.ajax({
 				type:"POST",
 				url:"http://localhost:8080/Maven_Project/record/exportExcel.action",
-				data:{
-					"cr_id":cr_id
-				},
 				success:function(data){
-					alert("导出成功")
+					//alert("导出成功")
+					//window.location.href = encodeURI("http://localhost:8080/Maven_Project/record/exportExcel.action");
 				},
 				//请求失败，包含具体的错误信息
 				error: function(e) {
-					alert("导出异常")
+					//alert("导出异常")
 				}
 			});
         }
