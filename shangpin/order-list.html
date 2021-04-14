@@ -49,8 +49,8 @@
                                         <i class="layui-icon">&#xe615;</i></button>
                                 </div>
                         <div class="layui-card-header">
-                            <button class="layui-btn layui-btn-danger" onclick="delAll()">
-                                <i class="layui-icon"></i>批量删除</button>
+                            <button class="layui-btn layui-btn-danger" onclick="exportExcel()">
+                                <i class="layui-icon layui-icon-file-b">  </i>导出Excel</button>
                             <button class="layui-btn" onclick="xadmin.open('添加用户','./order-add.html',800,600)">
                                 <i class="layui-icon"></i>添加</button></div>
                         <div class="layui-card-body ">
@@ -95,6 +95,27 @@
                 elem: '#end' //指定元素
             });
         });
+        
+        
+        function exportExcel(){
+        	alert("开始")
+        	var cr_id = document.getElementById("cr_id").innerText;
+        	alert(cr_id)
+        	$.ajax({
+				type:"POST",
+				url:"http://localhost:8080/Maven_Project/record/exportExcel.action",
+				data:{
+					"cr_id":cr_id
+				},
+				success:function(data){
+					alert("导出成功")
+				},
+				//请求失败，包含具体的错误信息
+				error: function(e) {
+					alert("导出异常")
+				}
+			});
+        }
         
         $(function(){
     		
@@ -152,7 +173,7 @@
 
 					var data = "<tr>\n" +
 					"<td>" + '<input type="checkbox" name=""  lay-skin="primary">' + "</td>" +
-						"<td>" + cr_id+ '</td>' +
+						"<td id='cr_id'>" + cr_id+ '</td>' +
 						"<td>" + uName+ '</td>' +
 						"<td>" + cr_money +"</td>" +
 						"<td>" + w_name +"</td>" +
@@ -243,18 +264,6 @@
             });
         }
 
-        function delAll(argument) {
-
-            var data = tableCheck.getData();
-
-            layer.confirm('确认要删除吗？' + data,
-            function(index) {
-                //捉到所有被选中的，发异步进行删除
-                layer.msg('删除成功', {
-                    icon: 1
-                });
-                $(".layui-form-checked").not('.header').parents('tr').remove();
-            });
-        }</script>
+       </script>
 
 </html>
