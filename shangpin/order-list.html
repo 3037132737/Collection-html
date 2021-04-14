@@ -166,6 +166,28 @@
         
         
         
+        function remove(cr_id){
+		alert("shanchu")
+		if(confirm("确定删除数据吗？")){
+			
+			$.ajax({
+				type:"get",
+				url:"http://localhost:8080/Maven_Project/record/delete.action",
+				async:true,
+				data:{
+					"cr_id":cr_id
+				},
+				success: function(data){
+					location.reload(); 
+					getPage(1);
+				},
+
+			});
+		}
+	}
+        
+        
+        
         
         
         
