@@ -108,11 +108,10 @@
 		 	var uTel=$('#uTel').val();
 		 	var uSex=$('#uSex').val();
 		 	$.ajax({
-		 		type:"post",
+		 		type:"get",
 		 		url:"http://localhost:8080/Maven_Project/user/update.action",
-		 		type: "POST",//方法类型
-	            dataType: "json",//预期服务器返回的数据类型
-		 		jsonp:"callback",
+//	            dataType: "json",//预期服务器返回的数据类型
+//		 		jsonp:"callback",
 		 		data:{
 		 			uId:uId,
 		 			uName:uName,
@@ -120,20 +119,15 @@
 		 			uSex:uSex,
 		 		},
 		 		success: function(data){
-		 			if(data.msg != "1"){
-		 				alert("修改成功");
+		 				//alert("修改成功");
 		 				window.location.href = "admin-list.html";
-		 				location.reload();
-		 			}
-		 			else{
-		 				alert("000")
-		 				location.reload();
-		 			}
+		 				//location.reload();
 					
 		 		},
 		 		error : function() 
 	                {
-	                    alert("修改异常！");
+	                    //alert("修改异常！");
+	                    window.location.href = "admin-list.html";
 	                }
 		 		
 		 	});

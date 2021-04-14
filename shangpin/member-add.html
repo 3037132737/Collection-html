@@ -55,7 +55,7 @@
                     
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
-                        <button class="layui-btn"   id="tianjia" <!--onclick="tianjia()"-->>添加</button></div>
+                        <button class="layui-btn"   id="tianjia" <!--onclick="tianjia()"-->添加</button></div>
                 </form>
             </div>
         </div>
@@ -80,7 +80,12 @@
 				success:function(data){
 					alert("成功");
 					//location.reload();
+					window.location.href = "member-list.html";
 				},
+//				error : function(e){
+//	                    alert("添加异常！");
+//	                    window.location.href = "member-list.html";
+//	                }
 				async:true
 			});
 			})

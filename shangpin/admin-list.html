@@ -117,7 +117,6 @@
 			},
 			//请求失败，包含具体的错误信息
 			error: function(e) {
-
 			}
 		});
 　
@@ -150,7 +149,7 @@
 				
 				//删除
 	function remove(uId){
-		alert("shanchu")
+		//alert("shanchu")
 		if(confirm("确定删除数据吗？")){
 			
 			$.ajax({
@@ -161,10 +160,14 @@
 					"uId":uId
 				},
 				success: function(data){
+					//alert("删除成功")
 					location.reload(); 
-					getPage(1);
 				},
-
+				error:function(e){
+					//alert("删除失败")
+					location.reload(); 
+					//console.log(e)
+				}
 			});
 		}
 	}

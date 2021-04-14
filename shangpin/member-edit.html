@@ -114,11 +114,11 @@
 		 	var m_tel=$('#m_tel').val();
 		 	var g_id=$('#g_id').val();
 		 	$.ajax({
-		 		type:"post",
+		 		type: "get",//方法类型
 		 		url:"http://localhost:8080/Maven_Project/member/update.action",
-		 		type: "POST",//方法类型
-	            dataType: "json",//预期服务器返回的数据类型
-		 		jsonp:"callback",
+		 		
+	            //dataType: "json",//预期服务器返回的数据类型
+		 		//jsonp:"callback",
 		 		data:{
 		 			m_id:m_id,
 		 			m_name:m_name,
@@ -127,12 +127,12 @@
 		 			g_id:g_id,
 		 		},
 		 		success: function(data){
-		 			
+		 			//alert("1");
 					window.location.href = "member-list.html";
 		 		},
-		 		error : function() 
-	                {
-	                    alert("修改异常！");
+		 		error : function(e){
+	                    //alert("修改异常！");
+	                    window.location.href = "member-list.html";
 	                }
 		 		
 		 	});
