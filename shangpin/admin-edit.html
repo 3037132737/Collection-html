@@ -11,11 +11,7 @@
         <link rel="stylesheet" href="./css/xadmin.css">
         <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
-        <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-        <!--[if lt IE 9]>
-            <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-            <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <script type="text/javascript" src="js/jquery.min.js" ></script>
     </head>
     <body>
        <div class="layui-fluid">
@@ -26,7 +22,8 @@
                           <span class="x-red">*</span>姓名
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="username" name="username" required="" lay-verify="required"
+                      	 <input type="text" style="display:none" id="uId" name="uId" >
+                          <input type="text" id="uName" name="uName" required="" lay-verify="required"
                           autocomplete="off" class="layui-input">
                       </div>
                       <div class="layui-form-mid layui-word-aux">
@@ -38,7 +35,7 @@
                           <span class="x-red">*</span>手机号
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="phone" name="phone" required="" lay-verify="phone"
+                          <input type="text" id="uTel" name="uTel" required="" lay-verify="phone"
                           autocomplete="off" class="layui-input">
                       </div>
                       <div class="layui-form-mid layui-word-aux">
@@ -50,7 +47,7 @@
                           <span class="x-red">*</span>性别
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="L_email" name="email" required="" 
+                          <input type="text" id="uSex" name="uSex" required="" 
                           autocomplete="off" class="layui-input">
                       </div>
                       <div class="layui-form-mid layui-word-aux">
@@ -63,14 +60,87 @@
                   <div class="layui-form-item">
                       <label for="L_repass" class="layui-form-label">
                       </label>
-                      <button  class="layui-btn" lay-filter="add" lay-submit="">
-                          修改
+                      <button  class="layui-btn" lay-filter="add" onclick="edit()">
+                          		修改
                       </button>
                   </div>
               </form>
             </div>
         </div>
-        
+        <script>
+        	$(document).ready(function(){
+				var uId=sessionStorage.getItem('uId');
+				//alert(uId)
+				
+				$.ajax({
+					url:"http://localhost:8080/Maven_Project/user/queryById.action?uId="+uId,
+					data: {},
+					type: "get",
+					dataType: "json",
+					success: function(data) {
+						//alert(data.GOODS_NAME)
+						addValue(
+							data.uId,
+							data.uName,
+							data.uTel,
+							data.uSex,
+						)
+					//alert("获取数据成功")
+				},
+				error: function() {
+					alert("获取数据失败")
+				}
+					
+				});
+				function addValue(con1,con2,con3,con4){
+					$("#uId").attr("value",con1);
+					$("#uName").attr("value",con2);
+					$("#uTel").attr("value",con3);
+					$("#uSex").attr("value",con4);
+			}
+			});
+			
+			
+			function edit(){
+		 	//alert("edit()");
+		 	var uId=$('#uId').val();
+		 	var uName=$('#uName').val();
+		 	var uTel=$('#uTel').val();
+		 	var uSex=$('#uSex').val();
+		 	$.ajax({
+		 		type:"post",
+		 		url:"http://localhost:8080/Maven_Project/user/update.action",
+		 		type: "POST",//方法类型
+	            dataType: "json",//预期服务器返回的数据类型
+		 		jsonp:"callback",
+		 		data:{
+		 			uId:uId,
+		 			uName:uName,
+		 			uTel:uTel,
+		 			uSex:uSex,
+		 		},
+		 		success: function(data){
+		 			if(data.msg != "1"){
+		 				alert("修改成功");
+		 				window.location.href = "admin-list.html";
+		 				location.reload();
+		 			}
+		 			else{
+		 				alert("000")
+		 				location.reload();
+		 			}
+					
+		 		},
+		 		error : function() 
+	                {
+	                    alert("修改异常！");
+	                }
+		 		
+		 	});
+		 }
+			
+			
+        </script>
     </body>
 
 </html>
