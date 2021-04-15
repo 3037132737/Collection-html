@@ -12,6 +12,9 @@
         <script type="text/javascript" src="./js/xadmin.js"></script>
         <script type="text/javascript"></script>
         <script type="text/jscript" src="js/jquery.min.js">
+        	<script type="text/javascript" src="js/bootstrap.js" ></script>
+        	<script src="b"></script>
+        	<link href="css/bootstrap.css" />
         	
         </script>
         <!--[if lt IE 9]>
@@ -20,6 +23,7 @@
         <![endif]-->
     </head>
     <body>
+    	
         <div class="x-nav">
           <span class="layui-breadcrumb">
            
@@ -52,15 +56,16 @@
                             <table class="layui-table layui-form">
                               <thead>
                                 <tr>
-                                  <th>
-                                    <input type="checkbox" name=""  lay-skin="primary">
-                                  </th>
+                                 
                                   <th>ID</th>
                                   <th>姓名</th>
+                                   <th>照片</th>
                                   <th>电话</th>
                                   <th>性别</th>
                                   <th>操作</th>
+                                  <td><img src="D:\images\af87a943-e52d-432c-8652-8094910bb4d1.jpg"/></td>
                                  </tr>
+                                 
                               </thead>
                                   
                                 <tbody id="tab">
@@ -112,7 +117,7 @@
 			let recent = data;	
 			console.log(recent)
 			for(let i = 0; i < recent.length; i++) {
-				shuzhi((i + 1), recent[i].uId, recent[i].uName, recent[i].uTel, recent[i].uSex )
+				shuzhi((i + 1), recent[i].uId, recent[i].uName, recent[i].uTel, recent[i].uSex, recent[i].uImgs )
 				}
 			},
 			//请求失败，包含具体的错误信息
@@ -126,12 +131,12 @@
                                // '</a>&nbsp;&nbsp;<a href="javascript:edit(' + r.id + ')">编辑</a></td></tr>'
 
 			
-				function shuzhi(num, uId, uName, uTel, uSex) {
+				function shuzhi(num, uId, uName, uTel, uSex,uImgs) {
 
 					var data = "<tr>\n" +
-						"<td>" + '<input type="checkbox" name=""  lay-skin="primary">' + "</td>" +
-						"<td>" + uId+ '</td>' +
+						"<td>" + uId+ "</td>" +
 						"<td>" + uName +"</td>" +
+						'<td><img src="D:\\images\\'+uImgs+'" style="width: 100%;height: 100%;"/></td>'+
 						"<td>" + uTel +"</td>" +
 						"<td>" + uSex +"</td>" +
 						"<td>" + "<a  href=\"javascript:editpage('"+uId+"')\"  >修改<\a>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
