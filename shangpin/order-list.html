@@ -1,265 +1,103 @@
 <!DOCTYPE html>
 <html class="x-admin-sm">
-    
-    <head>
-        <meta charset="UTF-8">
-        <title>账单列表页面</title>
-        <meta name="renderer" content="webkit">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-        <link rel="stylesheet" href="./css/font.css">
-        <link rel="stylesheet" href="./css/xadmin.css">
-        <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="./js/xadmin.js"></script>
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        
-                <style type="text/css">
-        	#fu{position: relative;}
-        	#zi{position: absolute;left: 200px;top: 10px;}
-        </style>
-    </head>
-    
-    <body>
-        <div class="x-nav">
-            <span class="layui-breadcrumb">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>账单列表页面</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+		<link rel="stylesheet" href="./css/font.css">
+		<link rel="stylesheet" href="./css/xadmin.css">
+		<script src="./lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./js/xadmin.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script src="js/bumen-list.js" type="text/javascript" charset="utf-8" ></script>
+
+		<style type="text/css">
+			#fu {
+				position: relative;
+			}
+			
+			#zi {
+				position: absolute;
+				left: 200px;
+				top: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="x-nav">
+			<span class="layui-breadcrumb">
                 <a>
                    <cite>导航</cite></a></a>
             </span>
-            <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
-                <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
-            </a>
-        </div>
-        <div class="layui-fluid">
-            <div class="layui-row layui-col-space15">
-                <div class="layui-col-md12">
-                    <div id="fu" class="layui-card">
-                        <div  class="layui-card-body ">
-                            <form class="layui-form layui-col-space5">
-                                
+			<a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+				<i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+			</a>
+		</div>
+		<div class="layui-fluid">
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md12">
+					<div id="fu" class="layui-card">
+						<div class="layui-card-body ">
+							<form class="layui-form layui-col-space5">
 
-                                
-                                <div class="layui-input-inline layui-show-xs-block">
-                                    <input type="text" name="uName" id="uName" placeholder="请输入员工姓名" autocomplete="off" class="layui-input"></div>
-                                
-                            </form>
-                            
-                        </div>
-                        <div  id="zi" layui-input-inline layui-show-xs-block"">
-                                    <button class="layui-btn" lay-submit="" lay-filter="sreach" id="chaxun">
+								<div class="layui-input-inline layui-show-xs-block">
+									<input type="text" name="uName" id="uName" placeholder="请输入员工姓名" autocomplete="off" class="layui-input"></div>
+
+							</form>
+
+						</div>
+						<div id="zi" layui-input-inline layui-show-xs-block "">
+							<button class="layui-btn" lay-submit="" lay-filter="sreach" id="chaxun">
                                         <i class="layui-icon">&#xe615;</i></button>
-                                </div>
-                        <div class="layui-card-header">
-                            <button class="layui-btn layui-btn-danger" onclick="exportExcel()">
+						</div>
+						<div class="layui-card-header">
+							<button class="layui-btn layui-btn-danger" onclick="exportExcel()">
                                 <i class="layui-icon layui-icon-file-b">  </i>导出Excel</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加用户','./order-add.html',800,600)">
+							<button class="layui-btn" onclick="xadmin.open('添加用户','./order-add.html',800,600)">
                                 <i class="layui-icon"></i>添加</button></div>
-                        <div class="layui-card-body ">
-                            <table class="layui-table layui-form">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <input type="checkbox" name="" lay-skin="primary">
-                                        </th>
-                                        <th>账单编号</th>
-                                        <th>员工姓名</th>
-                                        <th>总金额</th>
-                                        <th>支付方式</th>
-                                        <th>下单时间</th>
-                                        <th>备注</th>
-                                        <th>操作</th></tr>
-                                </thead>
-                                <tbody id="tab">
-                                    
-                                    
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
-    <script>layui.use(['laydate', 'form'],
-        function() {
-            var laydate = layui.laydate;
+						<div class="layui-card-body ">
+							<table class="layui-table layui-form">
+								<thead>
+									<tr>
+										<th>
+											<input type="checkbox" name="" lay-skin="primary">
+										</th>
+										<th>账单编号</th>
+										<th>员工姓名</th>
+										<th>总金额</th>
+										<th>支付方式</th>
+										<th>下单时间</th>
+										<th>备注</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody id="tab">
 
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#start' //指定元素
-            });
+								</tbody>
+							</table>
+						</div>
+						<div class="page">
+							<div class="bs-example">
+							<!-- 分页器 -->
+							<div id="example_filter" class="pull-right">
+								<div class="bs-example">
+								<div id="pageDemo"></div>
+								</div>
+							</div>
+							</div>
+						</div>
 
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#end' //指定元素
-            });
-        });
-        
-        
-        function exportExcel(){
-        	//alert("开始")
-        	$.ajax({
-				type:"POST",
-				url:"http://localhost:8080/Maven_Project/record/exportExcel.action",
-				success:function(data){
-					alert("导出成功")
-					window.location.href = encodeURI("http://localhost:8080/Maven_Project/record/exportExcel.action");
-				},
-				//请求失败，包含具体的错误信息
-				error: function(e) {
-					//alert("导出异常")
-				}
-			});
-        }
-        
-        $(function(){
-    		
-			$.ajax({
-			//请求方式
-			type: "GET",
-			//请求头
-			dataType: "json",
-			//请求地址
-			url: "http://localhost:8080/Maven_Project/record/query.action",
-			//数据，json字符串
-			//请求成功
-			success: function(data) {
-				let recent = data;	
-				console.log(recent)
-				for(let i = 0; i < recent.length; i++) {
-					shuzhi((i + 1), recent[i].cr_id,recent[i].uName, recent[i].cr_money, recent[i].w_name, recent[i].cr_time,recent[i].cr_remark )
-					}
-				},
-				//请求失败，包含具体的错误信息
-				error: function(e) {
-					
-				}
-			});
-			});
-			
-			
-			$("#chaxun").click(function(){
-				document.getElementById("tab").innerHTML = "";
-				$.ajax({
-				type:"POST",
-				url:"http://localhost:8080/Maven_Project/record/queryByName.action",
-				data:{
-					"uName":$("#uName").val()
-				},
-				success:function(data){
-				let recent = data;	
-				console.log(recent)
-				for(let i = 0; i < recent.length; i++) {
-					shuzhi((i + 1), recent[i].cr_id, recent[i].uName, recent[i].cr_money, recent[i].w_name, recent[i].cr_time,recent[i].cr_remark )
-					}
-				},
-				//请求失败，包含具体的错误信息
-				error: function(e) {
-					alert("没有该用户")
-				}
-			});
-			})
-			
-			
-        
-        
-        
-        function shuzhi(num, cr_id, uName, cr_money, w_name, cr_time,cr_remark) {
-
-					var data = "<tr>\n" +
-					"<td>" + '<input type="checkbox" name=""  lay-skin="primary">' + "</td>" +
-						"<td id='cr_id'>" + cr_id+ '</td>' +
-						"<td>" + uName+ '</td>' +
-						"<td>" + cr_money +"</td>" +
-						"<td>" + w_name +"</td>" +
-						"<td>" + cr_time +"</td>" +
-						"<td>" + cr_remark +"</td>" +
-						"<td>" + "<a href='javascript:edit("+cr_id+")' >修改</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-						"<a  href=\"javascript:remove('"+cr_id+"')\"  >删除<\a>" +
-						"\n</tr>"
-				
-					$("#tab").append(data);
-
-				}
-        
-        
-        
-        function remove(cr_id){
-		alert("shanchu")
-		if(confirm("确定删除数据吗？")){
-			
-			$.ajax({
-				type:"get",
-				url:"http://localhost:8080/Maven_Project/record/delete.action",
-				async:true,
-				data:{
-					"cr_id":cr_id
-				},
-				success: function(data){
-					location.reload(); 
-					getPage(1);
-				},
-
-			});
-		}
-	}
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        /*用户-停用*/
-        function member_stop(obj, id) {
-            layer.confirm('确认要停用吗？',
-            function(index) {
-
-                if ($(obj).attr('title') == '启用') {
-
-                    //发异步把用户状态进行更改
-                    $(obj).attr('title', '停用');
-                    $(obj).find('i').html('&#xe62f;');
-
-                    $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                    layer.msg('已停用!', {
-                        icon: 5,
-                        time: 1000
-                    });
-
-                } else {
-                    $(obj).attr('title', '启用');
-                    $(obj).find('i').html('&#xe601;');
-
-                    $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                    layer.msg('已启用!', {
-                        icon: 5,
-                        time: 1000
-                    });
-                }
-
-            });
-        }
-
-        /*用户-删除*/
-        function member_del(obj, id) {
-            layer.confirm('确认要删除吗？',
-            function(index) {
-                //发异步删除数据
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!', {
-                    icon: 1,
-                    time: 1000
-                });
-            });
-        }
-
-       </script>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		
+	</script>
 
 </html>
