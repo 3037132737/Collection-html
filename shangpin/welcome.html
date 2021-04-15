@@ -26,23 +26,20 @@
 			#tupian {
 				height: 200px;
 				width: 200px;
-				background-size:contain;
+				background-size: contain;
 			}
-			#stp{
+			
+			#stp {
 				height: 100%;
 				width: 100%;
 			}
+			
 			#clock {
 				background-color: #F5F3F5;
 			}
-			
 		</style>
 
-		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-		<!--[if lt IE 9]>
-          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+
 	</head>
 
 	<body>
@@ -54,6 +51,7 @@
 							<blockquote class="layui-elem-quote">欢迎管理员：
 								<span class="x-red">test</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<script type="text/javascript">
+									/*现实时间*/
 									function showTime() {
 										var t = new Date();
 										var year = t.getFullYear();
@@ -68,8 +66,6 @@
 
 									}
 									setInterval("showTime()", 1000);
-
-									
 								</script>
 								<input type="text" id="clock" style="border: none;" />
 							</blockquote>
@@ -87,14 +83,12 @@
 						</div>
 						<div class="layui-card-body ">
 							<ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
-								
-								<li class="layui-col-md2 layui-col-xs6" >
+
+								<li class="layui-col-md2 layui-col-xs6">
 									<div id="tupian">
-										
-									
-										
+
 									</div>
-									
+
 								</li>
 
 								<li class="layui-col-md10 layui-col-xs10">
@@ -128,15 +122,11 @@
 		</div>
 		</div>
 		<script>
-			
-			
-				
-			
-			
-			$(document).ready(function(){
-				var r_username=sessionStorage.getItem('r_username');
+			/*查询root表数据*/
+			$(document).ready(function() {
+				var r_username = sessionStorage.getItem('r_username');
 				//alert("r_username"+r_username);
-				
+
 				$.ajax({
 					//请求方式
 					type: "GET",
@@ -160,7 +150,7 @@
 				});
 
 			});
-
+			/*定义表格*/
 			function shuzhi(num, r_name, r_sex, r_age, r_remark) {
 
 				var data = "<tr>\n" +
@@ -173,23 +163,20 @@
 				$("#tab").append(data);
 
 			}
-			
-			
-		
-			
+
 			view(window.sessionStorage.getItem("r_username"));
 
 			function cvoid() {
 				//alert("成功");
 
 			}
-				function view(r_username) {
-				
+			/*获取r_username值*/
+			function view(r_username) {
+
 				//alert("验证"+r_username)
-			document.getElementById("tupian").innerHTML = "";
-					$("#tupian").append('<img id="stp" src="http://localhost:8080/Maven_Project/root/download.action?r_username=' + r_username + '"/>');
-				}
-			
+				document.getElementById("tupian").innerHTML = "";
+				$("#tupian").append('<img id="stp" src="http://localhost:8080/Maven_Project/root/download.action?r_username=' + r_username + '"/>');
+			}
 		</script>
 	</body>
 
