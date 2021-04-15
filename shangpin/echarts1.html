@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
     <head>
         <meta charset="UTF-8">
-        <title>echarts页面</title>
+        <title>营业额-echarts折线图</title>
         <meta name="renderer" content="webkit|ie-comp|ie-stand">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -49,8 +49,8 @@
 					sum.push(data[i].re_date)
 					suu.push(data[i].cr_money)
 				}
-				alert(sum)
-				alert(suu)
+				//alert(sum)
+				//alert(suu)
 				
 				var myChart = echarts.init(document.getElementById('main'));
 
@@ -98,13 +98,6 @@
 				// 使用刚指定的配置项和数据显示图表。
         	myChart.setOption(option);
 
-//				for(let i = 0; i < recent.length; i++) {
-//					shuzhi((i + 1), recent[i].re_date, recent[i].cr_money )
-//					}
-//				
-//				var re_date = document.getElementById('re_date').innerHTML;
-//      		var cr_money = document.getElementById('cr_money').innerHTML;
-//      		alert("re_date:"+re_date,cr_money);
 				},
 				
 
@@ -116,18 +109,6 @@
 				});
 
 				
-//				function shuzhi(num, re_date, cr_money) {
-//					alert("shuzhi")
-//					var data = "<tr>\n" +
-//						"<td id='re_date'>" + re_date+ '</td>' +
-//						"<td id='cr_money'>" + cr_money +"</td>" +
-//						
-//						"\n</tr>"
-//				
-//					$("#tab").append(data);
-//
-//				}
-					// 基于准备好的dom，初始化echarts实例
 					
     </script>
     <script>
