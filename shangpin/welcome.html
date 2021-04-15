@@ -1,169 +1,196 @@
 <!DOCTYPE html>
 <html class="x-admin-sm">
-    <head>
-        <meta charset="UTF-8">
-        <title>欢迎页面-XXX</title>
-        <meta name="renderer" content="webkit">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-        <link rel="stylesheet" href="./css/font.css">
-        <link rel="stylesheet" href="./css/xadmin.css"><br />
-        
-        <script src="js/jquery.js"></script>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>欢迎页面-XXX</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+		<link rel="stylesheet" href="./css/font.css">
+		<link rel="stylesheet" href="./css/xadmin.css"><br />
+
+		<script src="js/jquery.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-        
-        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-        <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="./js/xadmin.js"></script>
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-		
+		<script src="./lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./js/xadmin.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+
 		<style type="text/css">
-			
-			#stp{
-				
+			#tupian {
 				height: 200px;
 				width: 200px;
-				
-				
+				background-size:contain;
 			}
-			#clock{
+			#stp{
+				height: 100%;
+				width: 100%;
+			}
+			#clock {
 				background-color: #F5F3F5;
 			}
 			
-			
-			
 		</style>
-		
-        <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-        <!--[if lt IE 9]>
+
+		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+		<!--[if lt IE 9]>
           <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
           <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-    </head>
-    <body>
-        <div class="layui-fluid">
-            <div class="layui-row layui-col-space15">
-                <div class="layui-col-md12">
-                    <div class="layui-card">
-                        <div class="layui-card-body ">
-                            <blockquote class="layui-elem-quote">欢迎管理员：
-                                <span class="x-red">test</span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <script type="text/javascript">
-                                	function showTime(){
-                                		var t =new Date();
-                                		var year =t.getFullYear();
-                                		var month =t.getMonth()+1;
-                                		var day =t.getDate();
-                                		var hour =t.getHours();
-                                		var minute =t.getMinutes();
-                                		var second =t.getSeconds();
-                                		var shouTime =year+"."+month+"."+day+"  "+hour+((minute<10)?":0":":") +minute+((second<10)?":0":":")+second;
-                                		
-                                		document.getElementById("clock").value=shouTime;
-                                		
-                                	}
-                                	setInterval("showTime()",1000);
-                                	
+	</head>
 
-        </script>
-                              <input type="text" id="clock" style="border: none;" />
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-md12"> 
-                    <div class="layui-card">
-                        <div class="layui-card-header">
-                        	<ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
-                        	<li class="layui-col-md2 layui-col-xs6">头像</li>
-                        
-                       <a href="zhuce.html"><button type="button" class="btn btn-info">添加管理员</button></a> 
-                        
-                        </div>
-                        <div class="layui-card-body ">
-                            <ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
-                                <li class="layui-col-md2 layui-col-xs6">
-                                    <img src="images/sss.jpg" class="img-circle" id="stp">
-                                </li>
-                                
-                                <li class="layui-col-md10 layui-col-xs10">
-                                		<table class="table">
-                                			<thead>
-                                			<tr class="warning">
-                                				<td>姓名</td>
-                                				<td>性别</td>
-                                				<td>年龄</td>
-                                				<td>备注</td>
-                                			</tr>
-                                			</thead>
-                                			
-                                			<tbody id="tab">
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md12">
+					<div class="layui-card">
+						<div class="layui-card-body ">
+							<blockquote class="layui-elem-quote">欢迎管理员：
+								<span class="x-red">test</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<script type="text/javascript">
+									function showTime() {
+										var t = new Date();
+										var year = t.getFullYear();
+										var month = t.getMonth() + 1;
+										var day = t.getDate();
+										var hour = t.getHours();
+										var minute = t.getMinutes();
+										var second = t.getSeconds();
+										var shouTime = year + "." + month + "." + day + "  " + hour + ((minute < 10) ? ":0" : ":") + minute + ((second < 10) ? ":0" : ":") + second;
 
-											</tbody>
+										document.getElementById("clock").value = shouTime;
 
-                                			</table>
-                                	
-                                </li>
+									}
+									setInterval("showTime()", 1000);
 
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-               
-                <style id="welcome_style"></style>
-                <div class="layui-col-md12">
-                    </div>
-            </div>
-        </div>
-        </div>
-        <script>
-      $(function(){
-			$.ajax({
-		//请求方式
-		type: "GET",
-		//请求头
-		dataType: "json",
-		//请求地址
-		url: "http://localhost:8080/Maven_Project/root/query.action",
-		//数据，json字符串
-		//请求成功
-		success: function(data) {
-			let recent = data;	
-			console.log(recent)
-			for(let i = 0; i < recent.length; i++) {
-				shuzhi((i + 1), recent[i].r_name, recent[i].r_sex, recent[i].r_age, recent[i].r_remark)
-				}
-			},
-			//请求失败，包含具体的错误信息
-			error: function(e) {
+									
+								</script>
+								<input type="text" id="clock" style="border: none;" />
+							</blockquote>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md12">
+					<div class="layui-card">
+						<div class="layui-card-header">
+							<ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
+								<li class="layui-col-md2 layui-col-xs6">头像</li>
+
+								<a href="zhuce.html"><button type="button" class="btn btn-info">添加管理员</button></a>
+
+						</div>
+						<div class="layui-card-body ">
+							<ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
+								
+								<li class="layui-col-md2 layui-col-xs6" >
+									<div id="tupian">
+										
+									
+										
+									</div>
+									
+								</li>
+
+								<li class="layui-col-md10 layui-col-xs10">
+									<table class="table">
+										<thead>
+											<tr class="warning">
+												<td>姓名</td>
+												<td>性别</td>
+												<td>年龄</td>
+												<td>备注</td>
+											</tr>
+										</thead>
+
+										<tbody id="tab">
+
+										</tbody>
+
+									</table>
+
+								</li>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<style id="welcome_style"></style>
+				<div class="layui-col-md12">
+				</div>
+			</div>
+		</div>
+		</div>
+		<script>
+			
+			
+				
+			
+			
+			$(document).ready(function(){
+				var r_username=sessionStorage.getItem('r_username');
+				alert("r_username"+r_username);
+				
+				$.ajax({
+					//请求方式
+					type: "GET",
+					//请求头
+					dataType: "json",
+					//请求地址
+					url: "http://localhost:8080/Maven_Project/root/query.action",
+					//数据，json字符串
+					//请求成功
+					success: function(data) {
+						let recent = data;
+						console.log(recent)
+						for(let i = 0; i < recent.length; i++) {
+							shuzhi((i + 1), recent[i].r_name, recent[i].r_sex, recent[i].r_age, recent[i].r_remark)
+						}
+					},
+					//请求失败，包含具体的错误信息
+					error: function(e) {
+
+					}
+				});
+
+			});
+
+			function shuzhi(num, r_name, r_sex, r_age, r_remark) {
+
+				var data = "<tr>\n" +
+					"<td>" + r_name + '</td>' +
+					"<td>" + r_sex + "</td>" +
+					"<td>" + r_age + "</td>" +
+					"<td>" + r_remark + "</td>" +
+					"\n</tr>"
+
+				$("#tab").append(data);
 
 			}
-		});
+			
+			
 		
-		}); 	
-		
-		
-		function shuzhi(num, r_name, r_sex, r_age, r_remark) {
+			
+			view(window.sessionStorage.getItem("r_username"));
 
-					var data = "<tr>\n" +
-						"<td>" + r_name+ '</td>' +
-						"<td>" + r_sex +"</td>" +
-						"<td>" + r_age +"</td>" +
-						"<td>" + r_remark +"</td>" +
-						"\n</tr>"
+			function cvoid() {
+				alert("成功");
+
+			}
+				function view(r_username) {
 				
-					$("#tab").append(data);
+				alert("验证"+r_username)
+			document.getElementById("tupian").innerHTML = "";
+					$("#tupian").append('<img id="stp" src="http://localhost:8080/Maven_Project/root/download.action?r_username=' + r_username + '"/>');
+				}
+			
+		</script>
+	</body>
 
-				}
-		function cvoid(  ){
-					alert("成功");
-					
-				}
-			</script>
-    </body>
 </html>

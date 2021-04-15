@@ -41,6 +41,8 @@
 				var r_username =$("#r_username");
 				var r_password =$("#r_password");
 				var denglu = $("#denglu");
+				var username =$("#r_username").val();
+				window.sessionStorage.setItem("r_username", username);
 				denglu.click(function(){
 					
 					$.ajax({
@@ -71,7 +73,7 @@
 				
 			}
 			
-			login()
+			
 
       		
     </script>
