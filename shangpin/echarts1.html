@@ -31,8 +31,7 @@
         </div>
          <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
         <script type="text/javascript">
-        	sum=[]
-        	suu=[]
+        	
         	
         	$(function(){
     		
@@ -44,12 +43,60 @@
 			//请求地址
 			url: "http://localhost:8080/Maven_Project/record/echarts.action",
 			success: function(data) {
+				sum=[]
+        		suu=[]
 				for (let i = 0; i < data.length; i++) {
 					sum.push(data[i].re_date)
 					suu.push(data[i].cr_money)
 				}
 				alert(sum)
 				alert(suu)
+				
+				var myChart = echarts.init(document.getElementById('main'));
+
+					//myChart.clear();
+					// 指定图表的配置项和数据
+					var option = {
+						title: {
+							text: '折线图堆叠'
+						},
+						tooltip: {
+							trigger: 'axis'
+						},
+						legend: {
+							data: ['营业额']
+						},
+						grid: {
+							left: '3%',
+							right: '4%',
+							bottom: '3%',
+							containLabel: true
+						},
+						toolbox: {
+							feature: {
+								saveAsImage: {}
+							}
+						},
+						xAxis: {
+							type: 'category',
+							boundaryGap: false,
+							data: sum
+						},
+						yAxis: {
+							type: 'value'
+						},
+						series: [{
+								name: '营业额',
+								type: 'line',
+								stack: '总量',
+								data: suu
+							}
+							
+							
+						]
+					};
+				// 使用刚指定的配置项和数据显示图表。
+        	myChart.setOption(option);
 
 //				for(let i = 0; i < recent.length; i++) {
 //					shuzhi((i + 1), recent[i].re_date, recent[i].cr_money )
@@ -81,60 +128,7 @@
 //
 //				}
 					// 基于准备好的dom，初始化echarts实例
-					var myChart = echarts.init(document.getElementById('main'));
-
-					myChart.clear();
-					// 指定图表的配置项和数据
-					var option = {
-						title: {
-							text: '折线图堆叠'
-						},
-						tooltip: {
-							trigger: 'axis'
-						},
-						legend: {
-							data: ['营业额']
-						},
-						grid: {
-							left: '3%',
-							right: '4%',
-							bottom: '3%',
-							containLabel: true
-						},
-						toolbox: {
-							feature: {
-								saveAsImage: {}
-							}
-						},
-						xAxis: {
-							type: 'category',
-							boundaryGap: false,
-							data: [
-								{value:sum[0]},
-								{value:sum[1]},
-								{value:sum[2]}
-							
-							]
-						},
-						yAxis: {
-							type: 'value'
-						},
-						series: [{
-								name: '营业额',
-								type: 'line',
-								stack: '总量',
-								data: [
-								{value:suu[0]},
-								{value:suu[1]},
-								{value:suu[2]}
-								]
-							}
-							
-							
-						]
-					};
-				// 使用刚指定的配置项和数据显示图表。
-        	myChart.setOption(option);
+					
     </script>
     <script>
         var _hmt = _hmt || [];
