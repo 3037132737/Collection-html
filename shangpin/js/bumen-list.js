@@ -50,7 +50,7 @@ var total=null;
 		
 	}
 
-		$("#chaxun").click(function() {
+		$("#uName").click(function() {
 			document.getElementById("tab").innerHTML = "";
 			$.ajax({
 				type: "POST",
@@ -172,7 +172,7 @@ layui.use(['laypage', 'layer'], function() {
 		//分页
 		laypage.render({
 			elem: 'pageDemo', //分页容器的id
-			count: 5, //数据总数量
+			count: 30, //数据总数量
 			limit: size,
 			skin: '#1E9FFF', //自定义选中色值
 			//,skip: true //开启跳页
