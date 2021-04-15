@@ -55,7 +55,8 @@
                          </div>
                         
                         <div class="layui-card-header">
-                            <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+                             <button class="layui-btn layui-btn-danger" onclick="exportExcel()">
+                                <i class="layui-icon layui-icon-file-b">  </i>导出Excel</button>
                             <button class="layui-btn" onclick="xadmin.open('添加用户','./member-add.html',600,400)"><i class="layui-icon"></i>添加</button>
                         </div>
                         <div class="layui-card-body layui-table-body layui-table-main">
@@ -85,6 +86,25 @@
         </div> 
     </body>
     <script>
+
+
+	  
+        function exportExcel(){
+        	alert("开始")
+        	$.ajax({
+				type:"POST",
+				url:"http://localhost:8080/Maven_Project/member/exportExcel.action",
+				success:function(data){
+					alert("导出成功")
+					window.location.href = encodeURI("http://localhost:8080/Maven_Project/member/exportExcel.action");
+				},
+				//请求失败，包含具体的错误信息
+				error: function(e) {
+					alert("导出异常")
+				}
+			});
+        }
+    	
     	
     	
     	$(function(){
