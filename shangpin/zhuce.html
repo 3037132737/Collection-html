@@ -10,21 +10,11 @@
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
 		<link rel="stylesheet" href="./css/font.css">
 		<link rel="stylesheet" href="./css/login.css">
-		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="lib/layui/css/layui.css" />
 		<link rel="stylesheet" href="./css/xadmin.css">
 		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 		<script src="./lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-
-		<script src="lib/layui/lay/modules/upload.js" type="text/javascript" charset="utf-8"></script>
-		<script src="lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
 		<!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -50,123 +40,40 @@
 				<hr class="hr15">
 				<input name="r_remark" id="r_remark" lay-verify="required" placeholder="备注" type="text" class="layui-input">
 				<hr class="hr15">
-				<input type="file" name="" id="" value="" />
-				<input value="注册" type="button" id="zhuce" style="width:100%;">
+				<input type="file" name="head" id="head" value="" />
+				<input value="注册" type="button" id="add" style="width:100%;">
 				<hr class="hr20">
 			</form>
 		</div>
 
 		<script>
-			
-			
-			
-			function add() {
-		var formData = new FormData();
-		formData.append("technicianname", $('#name').val());
-		formData.append("technicianavatar", $("#head")[0].files[0]);
-		formData.append("jobtime", $('#time').val());
-		formData.append("techniciantemp", $('#remark').val());
-		$.ajax({
-			url: "http://localhost:8080/spa/technician/add",
-			data: formData,
-			cache: false,
-			processData: false,
-			contentType: false,
-			type: "POST",
-			success: function(data) {
-				if (data.code=="200") {
-					console.log(data.msg);
-					window.location.href="technician_list.html";
-			} else {
-				console.log(data.msg);
-			}
-		}
-	})
-}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			var files =null;
-			layui.use('upload', function() {
-			var $ = layui.jquery,
-				upload = layui.upload;
-
-			//选完文件后不自动上传
-			upload.render({
-				elem: '#test1',
-				url: 'http://localhost:8080/Maven_Project/root/update.action' //改成您自己的上传接口
-					,
-				auto: false
-					//,multiple: true
-					,
-				field: "uploadFile",
-				bindAction: '#zhuce',
-				data: {
-					"r_username": $("#r_username").val(),
-					"r_password": $("#r_password").val(),
-					"r_name": $("#r_name").val(),
-					"r_sex": $("#r_sex").val(),
-					"r_age": $("#r_age").val(),
-					"r_remark": $("#r_remark").val()
-				},
- 					 choose: function (obj) {
-		            files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
-		       },
-				done: function(res) {
-					layer.msg('上传成功');
-					console.log(res)
-				}
-			});
-			})
-
-		$("#zhuce").on("click", function () {
-		    var form = new FormData();
-		    for (let i in files) {
-		        form.append("files", files[i]);
-		    }
-		    form.append("r_username", $("#r_username").val());
-			 form.append("r_password", $("#r_password").val());
-			  form.append("r_name", $("#r_name").val());
-			   form.append("r_sex", $("#r_sex").val());
-			    form.append("r_age", $("#r_age").val());
-			     form.append("r_remark", $("#r_remark").val());
-		    // form.append("tm",new Date().getTime());
-		    var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
-		    $.ajax({
-		        url: 'http://localhost:8080/Maven_Project/root/update.action',
-		        type: "post",
-		        dataType: "json",
-		        async: false,
-		        contentType: false,
-		        processData: false,
-		        data: form,
-		        success: function (result) {
-		        }
-		        
-		    })
-		});
-
-		
+			$("#add").click(function() {
+						var formData = new FormData();
+						formData.append("r_username", $('#r_username').val());
+						formData.append("r_password", $('#r_password').val());
+						formData.append("uploadFile", $("#head")[0].files[0]);
+						formData.append("r_name", $('#r_name').val());
+						formData.append("r_sex", $('#r_sex').val());
+						formData.append("r_age", $('#r_age').val());
+						formData.append("r_remark", $('#r_remark').val());
+						$.ajax({
+							url: "http://localhost:8080/Maven_Project/root/update.action",
+							data: formData,
+							cache: false,
+							processData: false,
+							contentType: false,
+							type: "POST",
+							success: function(data) {
+								if(data.code == "200") {
+									console.log(data.msg);
+									window.location.href = "index.html";
+								} else {
+									console.log(data.msg);
+								}
+							}
+						})
+					})
 		</script>
-		<!-- 底部结束 -->
 
 	</body>
 
