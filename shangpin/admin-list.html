@@ -15,10 +15,21 @@
 		<script type="text/jscript" src="js/jquery.min.js">
 			<script type="text/javascript" src="js/bootstrap.js" >
 		</script>
-		<script src="b"></script>
 		<link href="css/bootstrap.css" />
+		
+
 
 		</script>
+		<style type="text/css">
+			#img{
+			height:60px;
+		
+		}
+		#stp {
+				height: 100%;
+				width: 100%;
+			}
+		</style>
 
 	</head>
 
@@ -64,7 +75,7 @@
 
 							</table>
 						</div>
-
+							<dir id="fudongtp"></dir>
 					</div>
 				</div>
 			</div>
@@ -126,7 +137,7 @@
 			var data = "<tr>\n" +
 				"<td>" + num + "</td>" +
 				"<td>" + uName + "</td>" +
-				'<td><img src="http://localhost:8080/Maven_Project/user/download.action?uId=' + uId + '"/></td>' +
+				'<td id="img"><img onmouseleave="leave()" onmouseover="view('+num+')" style="cursor: pointer;width: 40px;height: 40px;border-radius: 60px;vertical-align: middle;margin-right: 10px;margin-left: 0px;"  id="stp" src="http://localhost:8080/Maven_Project/user/download.action?uId=' + uId + '"/></td>' +
 				"<td>" + uTel + "</td>" +
 				"<td>" + uSex + "</td>" +
 				"<td>" + "<a class='layui-btn layui-btn-warm'  href=\"javascript:editpage('" + uId + "')\"  >修改<\a>" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
@@ -142,6 +153,33 @@
 			alert("成功");
 
 		}
+		
+		function view(num){
+			$.ajax({
+				//请求方式
+				type: "GET",
+				//请求头
+				dataType: "json",
+				//请求地址
+				url: "http://localhost:8080/Maven_Project/user/query.action",
+				//数据，json字符串
+				//请求成功
+				success: function(data) {
+					let recent = data;
+					console.log(recent)
+					$("#fudongtp").css("display","block")
+					document.getElementById("fudongtp").innerHTML = "";
+					$("#fudongtp").append('<img style="position: fixed;width: 300px;height: 300px;border-radius: 60px;vertical-align: middle;margin-left: 700px;margin-top:'+(num-20)*10+'px;" src="http://localhost:8080/Maven_Project/user/download.action?uId=' + recent[num-1].uId + '" />');
+				},
+				//请求失败，包含具体的错误信息
+				error: function(e) {}
+			});　
+			
+		}
+
+function leave(){
+		$("#fudongtp").css("display","none")
+}
 
 
 		/*删除*/
