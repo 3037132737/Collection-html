@@ -1,5 +1,6 @@
-var size=2;
+var size=8;
 var total=null;
+var coun=null;
 
 
 		function exportExcel() {
@@ -8,7 +9,7 @@ var total=null;
 				type: "POST",
 				url: "http://localhost:8080/Maven_Project/record/exportExcel.action",
 				success: function(data) {
-					alert("导出成功")
+					//alert("导出成功")
 					window.location.href = encodeURI("http://localhost:8080/Maven_Project/record/exportExcel.action");
 				},
 				//请求失败，包含具体的错误信息
@@ -37,8 +38,12 @@ var total=null;
 //					let recent = data;
 					let recent  = data.data.list;
 					console.log(recent)
+					coun=recent.length;
+					//alert(coun)
 					for(let i = 0; i < recent.length; i++) {
+						if(i<=size){
 						$("#tab").append(shuzhi((i + 1), recent[i].cr_id, recent[i].uName, recent[i].cr_money, recent[i].w_name, recent[i].cr_time, recent[i].cr_remark))
+						}
 					}
 				},
 				//请求失败，包含具体的错误信息
@@ -50,9 +55,10 @@ var total=null;
 		
 	}
 
-		$("#uName").click(function() {
+		function chaxun() {
+//			alert("条件查询")
 			document.getElementById("tab").innerHTML = "";
-			$.ajax({	
+			$.ajax({
 				type: "POST",
 				url: "http://localhost:8080/Maven_Project/record/queryByName.action",
 				data: {
@@ -60,8 +66,10 @@ var total=null;
 				},
 				success: function(data) {
 					let recent = data;
+					//alert(recent)
 					console.log(recent)
-					alert(recent.data.list.length)
+					//alert(recent.data.list.length)
+					
 					for(let i = 0; i < recent.data.list.length; i++) {
 					$("#tab").append(shuzhi((i + 1), recent[i].cr_id, recent[i].uName, recent[i].cr_money, recent[i].w_name, recent[i].cr_time, recent[i].cr_remark));	 
 					}
@@ -71,12 +79,11 @@ var total=null;
 					alert("没有该用户")
 				}
 			});
-		})
+		}
 
 		function shuzhi(num, cr_id, uName, cr_money, w_name, cr_time, cr_remark) {
 
 			var data = "<tr>\n" +
-				"<td>" + '<input type="checkbox" name=""  lay-skin="primary">' + "</td>" +
 				"<td id='cr_id'>" + cr_id + '</td>' +
 				"<td>" + uName + '</td>' +
 				"<td>" + cr_money + "</td>" +
@@ -87,13 +94,13 @@ var total=null;
 				"<a  href=\"javascript:remove('" + cr_id + "')\"  >删除<\a>" +
 				"\n</tr>"
 
-//			$("#tab").append(data);
+			//$("#tab").append(data);
 			return data;
 
 		}
 
 		function remove(cr_id) {
-			alert("shanchu")
+//			alert("shanchu")
 			if(confirm("确定删除数据吗？")) {
 
 				$.ajax({
@@ -105,7 +112,7 @@ var total=null;
 					},
 					success: function(data) {
 						location.reload();
-						getPage(1);
+						//getPage(1);
 					},
 
 				});
@@ -167,7 +174,7 @@ var total=null;
 layui.use(['laypage', 'layer'], function() {
 		var laypage = layui.laypage //分页 
 		var layer = layui.layer //弹层
-		queryDepAll(1,size);
+//		queryDepAll(1,size);
 		
 		//分页
 		laypage.render({
