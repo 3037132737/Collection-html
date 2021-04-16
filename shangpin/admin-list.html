@@ -39,7 +39,7 @@
 					<div class="layui-card">
 						
 						<div class="layui-card-header">
-							<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+							<!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
 							<button class="layui-btn" onclick="xadmin.open('添加用户','./admin-add.html',600,400)"><i class="layui-icon"></i>添加</button>
 						</div>
 						<div class="layui-card-body ">
@@ -47,7 +47,7 @@
 								<thead>
 									<tr>
 
-										<th>ID</th>
+										<th>序号</th>
 										<th>姓名</th>
 										<th>照片</th>
 										<th>电话</th>
@@ -124,14 +124,14 @@
 		function shuzhi(num, uId, uName, uTel, uSex, uImgs) {
 
 			var data = "<tr>\n" +
-				"<td>" + uId + "</td>" +
+				"<td>" + num + "</td>" +
 				"<td>" + uName + "</td>" +
 				'<td><img src="http://localhost:8080/Maven_Project/user/download.action?uId=' + uId + '"/></td>' +
 				"<td>" + uTel + "</td>" +
 				"<td>" + uSex + "</td>" +
-				"<td>" + "<a  href=\"javascript:editpage('" + uId + "')\"  >修改<\a>" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+				"<td>" + "<a class='layui-btn layui-btn-warm'  href=\"javascript:editpage('" + uId + "')\"  >修改<\a>" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
 				// "<a href=\"javascript:remove(' "+uId+" ')\" style='color: #CA0C16;" >删除</a>" +"</td>" +
-				"<a  href=\"javascript:remove('" + uId + "')\"  >删除<\a>" +
+				"<a class='layui-btn layui-btn-danger'  href=\"javascript:remove('" + uId + "')\"  >删除<\a>" +
 				"\n</tr>"
 
 			$("#tab").append(data);

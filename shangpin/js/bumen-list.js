@@ -70,7 +70,7 @@ var coun=null;
 					console.log(recent)
 					//alert(recent.data.list.length)
 					
-					for(let i = 0; i < recent.data.list.length; i++) {
+					for(let i = 0; i < recent.length; i++) {
 					$("#tab").append(shuzhi((i + 1), recent[i].cr_id, recent[i].uName, recent[i].cr_money, recent[i].w_name, recent[i].cr_time, recent[i].cr_remark));	 
 					}
 				},
@@ -84,14 +84,15 @@ var coun=null;
 		function shuzhi(num, cr_id, uName, cr_money, w_name, cr_time, cr_remark) {
 
 			var data = "<tr>\n" +
-				"<td id='cr_id'>" + cr_id + '</td>' +
+				"<td id='cr_id'>" + num + '</td>' +
 				"<td>" + uName + '</td>' +
 				"<td>" + cr_money + "</td>" +
 				"<td>" + w_name + "</td>" +
 				"<td>" + cr_time + "</td>" +
 				"<td>" + cr_remark + "</td>" +
-				"<td>" + "<a href='javascript:edit(" + cr_id + ")' >修改</a>" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-				"<a  href=\"javascript:remove('" + cr_id + "')\"  >删除<\a>" +
+				"<td>" + 
+//				"<a class='layui-btn layui-btn-warm' href='javascript:edit(" + cr_id + ")' >修改</a>" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+				"<a class='layui-btn layui-btn-danger'  href=\"javascript:remove('" + cr_id + "')\"  >删除<\a>"+ "</td>" +
 				"\n</tr>"
 
 			//$("#tab").append(data);
@@ -187,7 +188,7 @@ layui.use(['laypage', 'layer'], function() {
 		//分页
 		laypage.render({
 			elem: 'pageDemo', //分页容器的id
-			count: 30, //数据总数量
+			count: 20, //数据总数量
 			limit: size,
 			skin: '#1E9FFF', //自定义选中色值
 			//,skip: true //开启跳页
