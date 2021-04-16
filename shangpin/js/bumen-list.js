@@ -52,7 +52,7 @@ var total=null;
 
 		$("#uName").click(function() {
 			document.getElementById("tab").innerHTML = "";
-			$.ajax({
+			$.ajax({	
 				type: "POST",
 				url: "http://localhost:8080/Maven_Project/record/queryByName.action",
 				data: {
