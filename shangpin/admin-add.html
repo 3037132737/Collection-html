@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html class="x-admin-sm">
-    
-    <head>
-        <meta charset="UTF-8">
+
+	<head>
+		<meta charset="UTF-8">
 		<title>后台登录页面</title>
 		<meta name="renderer" content="webkit|ie-comp|ie-stand">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -15,90 +15,87 @@
 		<script src="./lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.js"></script>
-        <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-        <!--[if lt IE 9]>
+		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+		<!--[if lt IE 9]>
             <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
             <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-    </head>
-    <body>
-        <div class="layui-fluid">
-            <div class="layui-row">
-                <form class="layui-form">
-                  <div class="layui-form-item">
-                      <label for="uId" class="layui-form-label">
+	</head>
+
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<form class="layui-form">
+					<div class="layui-form-item">
+						<label for="uId" class="layui-form-label">
                           <span class="x-red">*</span>序号
                       </label>
-                      <div class="layui-input-inline">
-                          <input type="text" id="uId" name="uId" required="" lay-verify="required"
-                          autocomplete="off" class="layui-input">
-                      </div>
-                      <div class="layui-form-mid layui-word-aux">
-                          <span class="x-red">*</span>
-                      </div>
-                  </div>
-                  <div class="layui-form-item">
-                      <label for="uName" class="layui-form-label">
+						<div class="layui-input-inline">
+							<input type="text" id="uId" name="uId" required="" lay-verify="required" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-form-mid layui-word-aux">
+							<span class="x-red">*</span>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label for="uName" class="layui-form-label">
                           <span class="x-red">*</span>姓名
                       </label>
-                      <div class="layui-input-inline">
-                          <input type="text" id="uName" name="uName" required="" lay-verify="phone"
-                          autocomplete="off" class="layui-input">
-                      </div>
-                      <div class="layui-form-mid layui-word-aux">
-                          <span class="x-red">*</span>
-                      </div>
-                  </div>
-                  <div class="layui-form-item">
-                      <label for="uTel" class="layui-form-label">
+						<div class="layui-input-inline">
+							<input type="text" id="uName" name="uName" required="" lay-verify="phone" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-form-mid layui-word-aux">
+							<span class="x-red">*</span>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label for="uTel" class="layui-form-label">
                           <span class="x-red">*</span>电话
                       </label>
-                      <div class="layui-input-inline">
-                          <input type="text" id="uTel" name="uTel" required="" 
-                          autocomplete="off" class="layui-input">
-                      </div>
-                      <div class="layui-form-mid layui-word-aux">
-                          <span class="x-red">*</span>
-                      </div>
-                  </div>
-                  <div class="layui-form-item">
-                      <label for="uSex" class="layui-form-label">
+						<div class="layui-input-inline">
+							<input type="text" id="uTel" name="uTel" required="" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-form-mid layui-word-aux">
+							<span class="x-red">*</span>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label for="uSex" class="layui-form-label">
                           <span class="x-red">*</span>性别
                       </label>
-                      <div class="layui-input-inline">
-                          <input type="text" id="uSex" name="uSex" required="" 
-                          autocomplete="off" class="layui-input">
-                      </div>
-                      <div class="layui-form-mid layui-word-aux">
-                          <span class="x-red">*</span>
-                      </div>
-                  </div>
-                  
-                  <div class="layui-form-item">
-                  	 <label for="uSex" class="layui-form-label">
+						<div class="layui-input-inline">
+							<input type="text" id="uSex" name="uSex" required="" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-form-mid layui-word-aux">
+							<span class="x-red">*</span>
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<label for="uSex" class="layui-form-label">
                           <span class="x-red">*</span>头像
                       </label>
-                      <div class="layui-input-inline">
-                           <input type="file" name="uImgs" id="uImgs" value="" />
-                      </div>
-                    
-                  </div>
-                  
-                  
-                  
-                  
-                  <div class="layui-form-item">
-                      <label for="L_repass" class="layui-form-label">
+						<div class="layui-input-inline">
+							<input type="file" name="uImgs" id="uImgs" value="" />
+						</div>
+
+					</div>
+
+					<div class="layui-form-item">
+						<label for="L_repass" class="layui-form-label">
                       </label>
-                      <button  class="layui-btn" lay-filter="add" lay-submit="" id="tianjia">添加
+						<button class="layui-btn" lay-filter="add" lay-submit="" id="tianjia">添加
                       </button>
-                  </div>
-              </form>
-            </div>
-        </div>
-        
-        <script>
-			$("#tianjia").click(function(){
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<script>
+			
+			
+			/*添加信息*/
+			$("#tianjia").click(function() {
 				alert("1")
 				var formData = new FormData();
 				formData.append("uId", $('#uId').val());
@@ -107,27 +104,25 @@
 				formData.append("uSex", $('#uSex').val());
 				formData.append("uTel", $('#uTel').val());
 				alert("2")
-					$.ajax({
-							url: "http://localhost:8080/Maven_Project/user/add.action",
-							data: formData,
-							cache: false,
-							processData: false,
-							contentType: false,
-							type: "POST",
-							success: function(data) {
-								if(data.code == "200") {
-									console.log(data.msg);
-									window.location.href = "welcome.html";
-								} else {
-									console.log(data.msg);
-								}
-							}
-						})
+				$.ajax({
+					url: "http://localhost:8080/Maven_Project/user/add.action",
+					data: formData,
+					cache: false,
+					processData: false,
+					contentType: false,
+					type: "POST",
+					success: function(data) {
+						if(data.code == "200") {
+							console.log(data.msg);
+							window.location.href = "welcome.html";
+						} else {
+							console.log(data.msg);
+						}
+					}
+				})
 			})
-		
-			
-		</script>	
-        
-    </body>
+		</script>
+
+	</body>
 
 </html>
