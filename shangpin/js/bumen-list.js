@@ -98,6 +98,14 @@ var coun=null;
 			return data;
 
 		}
+		
+		/*获取修改id并跳转页面*/
+		function edit(cr_id) {
+			var idValue = cr_id;
+			window.sessionStorage.setItem("cr_id", idValue);
+			// 转跳至修改界面
+			window.location.href = "admin-edit.html"
+		}
 
 		function remove(cr_id) {
 //			alert("shanchu")
