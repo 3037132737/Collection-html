@@ -96,14 +96,14 @@
 			
 			/*添加信息*/
 			$("#tianjia").click(function() {
-				alert("1")
+				//alert("1")
 				var formData = new FormData();
 				formData.append("uId", $('#uId').val());
 				formData.append("uName", $('#uName').val());
 				formData.append("uImgs", $("#uImgs")[0].files[0]);
 				formData.append("uSex", $('#uSex').val());
 				formData.append("uTel", $('#uTel').val());
-				alert("2")
+				//alert("2")
 				$.ajax({
 					url: "http://localhost:8080/Maven_Project/user/add.action",
 					data: formData,
