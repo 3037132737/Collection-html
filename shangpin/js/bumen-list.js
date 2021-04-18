@@ -55,17 +55,19 @@ var coun=null;
 		
 	}
 
-		function chaxun() {
+		function chaxun(page,size) {
 //			alert("条件查询")
 			document.getElementById("tab").innerHTML = "";
 			$.ajax({
 				type: "POST",
 				url: "http://localhost:8080/Maven_Project/record/queryByName.action",
 				data: {
-					"uName": $("#uName").val()
+					"uName": $("#uName").val(),
+					"page":page,
+					"size":size
 				},
 				success: function(data) {
-					let recent = data;
+					let recent = data.list;
 					//alert(recent)
 					console.log(recent)
 					//alert(recent.data.list.length)
@@ -205,3 +207,30 @@ layui.use(['laypage', 'layer'], function() {
 		
 
 });
+
+
+function forpage(page,size){
+	
+		var laypage = layui.laypage //分页 
+		var layer = layui.layer //弹层
+//		queryDepAll(1,size);
+		chaxun(page,size);
+		//分页
+		laypage.render({
+			elem: 'pageDemo', //分页容器的id
+			count: 20, //数据总数量
+			limit: size,
+			skin: '#1E9FFF', //自定义选中色值
+			//,skip: true //开启跳页
+			jump: function(obj, first) {
+				$("#tab").empty();
+				chaxun(obj.curr, size)
+				if (!first) {
+					layer.msg('第' + obj.curr + '页', {
+						offset: 'b'
+					});
+				}
+			}
+		});
+	
+}
